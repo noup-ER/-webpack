@@ -11,8 +11,9 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 module.exports = merge(baseconfig,{
     mode:"production",
+    entry:path.resolve(rootPath,"src/main"),
     output:{
-        filename:"js/[hash].js",
+        filename:"js/[name].js",
         path: path.resolve(rootPath,"dist")
     },
     plugins: [

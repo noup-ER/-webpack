@@ -12,12 +12,18 @@ const {BundleAnalyzerPlugin} = require("webpack-bundle-analyzer");
 
 module.exports = merge(baseconfig,{
     mode:"development",
+    entry:[path.resolve(rootPath,"src/main"),'webpack-hot-middleware/client'],
     output:{
         filename:"js/[name].js",
         path: path.resolve(rootPath,"dist")
     },
+    devServer:{
+      hot:true
+    },
     stats:"errors-only",
     plugins: [
+        new webpack.optimize.OccurrenceOrderPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
         new webpack.DefinePlugin({
            "process.env.NODE_ENV":JSON.stringify("development")
         }),
